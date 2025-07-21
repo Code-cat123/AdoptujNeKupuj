@@ -1,24 +1,131 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mapa útulků 🐾</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nekupuj, ale adoptuj! 🐾</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9f3;
+      color: #333;
+      scroll-behavior: smooth;
     }
+
+    h1.main-title {
+      font-size: 10vw;
+      text-shadow: 4px 4px 0px #00000050;
+      font-weight: bold;
+      animation: pulz 2s infinite;
+      margin: 0;
+      padding: 1em 0;
+      background: #ff6f5e;
+      color: white;
+      text-align: center;
+    }
+
+    @keyframes pulz {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2em;
+    }
+
+    .shelter-links a {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 20px;
+      background-color: #ff5e5e;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .shelter-links a:hover {
+      background-color: #ff4242;
+    }
+
     #map {
       height: 100vh;
+    }
+
+    footer {
+      background: #ffbaba;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 1.5em;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #ff5e5e;
     }
   </style>
 </head>
 <body>
+  <h1 class="main-title">NEKUPUJ, ALE ADOPTUJ!</h1>
 
-  <div id="map"></div>
+  <section>
+    <h2>Proč adoptovat?</h2>
+    <ul>
+      <li>❤️ Zachráníš život</li>
+      <li>🐾 Získáš věrného parťáka</li>
+      <li>💸 Adopce je levnější a smysluplná</li>
+      <li>🚫 Nepodporuješ množitele</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Jak adoptovat?</h2>
+    <ul>
+      <li>1. Navštiv útulek</li>
+      <li>2. Seznam se se zvířetem</li>
+      <li>3. Vyplň žádost o adopci</li>
+      <li>4. Počkej na schválení</li>
+      <li>5. Přiveď nového člena do rodiny!</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Přidej se k výzvě!</h2>
+    <p>
+      Sdílej příběh svého adoptovaného mazlíčka na sociálních sítích<br>
+      s hashtagem <strong style="color:#ff5e5e">#AdoptujNeKupuj</strong> 🐶🐱💗<br>
+      Pomoz inspirovat ostatní a zachraň další životy!
+    </p>
+  </section>
+
+  <section>
+    <h2>Mapa útulků</h2>
+    <div id="map"></div>
+  </section>
+
+  <footer>
+    <p>🐾 Powered by adam softwares cat™ – srdcem pro zvířata 🐾</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/hashtag/utulek" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/explore/tags/utulek/" target="_blank">Instagram</a>
+      <a href="https://twitter.com/hashtag/utulek" target="_blank">Twitter</a>
+    </div>
+  </footer>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -66,17 +173,24 @@ const shelters = [
   { name: "Zachraň kočku", lat: 50.1449, lon: 14.4563, url: "https://www.zachrankocku.cz/" },
   { name: "Záchranná stanice Archa – ZOO Liberec", lat: 50.7634, lon: 15.0589, url: "https://www.zooliberec.cz/archa/" },
   { name: "Záchytné kotce Havířov", lat: 49.7798, lon: 18.4325, url: "https://www.havirov-city.cz/" },
-  { name: "Zvířecí pohoda – Bohuňovice", lat: 49.6604, lon: 17.3166, url: "https://www.zvirecipohoda.cz/" }
-  { name: "Kočičí Azyl Znojemsko", lat: 48.8557, lon: 16.0619, url: "https://www.kociciazylznojemsko.cz/" },
-  { name: "Azyl Lucky", lat: 49.5324, lon: 15.2058, url: "https://www.azyl-lucky.cz/" },
-  { name: "Soukromý azyl u Šmudliny", lat: 49.7435, lon: 13.3871, url: "https://www.smudlina.cz/" },
+  { name: "Zvířecí pohoda – Bohuňovice", lat: 49.6604, lon: 17.3166, url: "https://www.zvirecipohoda.cz/" },
+  { name: "Kočičí Azyl Znojemsko", lat: 48.8557, lon: 16.0619, url: "http://www.kociciazylznojemsko.cz/" },
+  { name: "Azyl Lucky", lat: 49.5324, lon: 15.2058, url: "https://www.azyllucky.cz/" },
+  { name: "Soukromý azyl u Šmudliny", lat: 49.7435, lon: 13.3871, url: "https://www.utulek-tachov.cz/" },
   { name: "Azyl Gaia – Libčice nad Vltavou", lat: 50.1847, lon: 14.3622, url: "https://www.azylgaia.cz/" },
-  { name: "Útulek Jimlín", lat: 50.3592, lon: 13.7418, url: "https://www.utulekjimlin.cz/" },
-  { name: "Útulek Lesan Kladno", lat: 50.1359, lon: 14.1003, url: "https://www.utulek-lesan.cz/" },
-  { name: "Záchytná stanice Tachov", lat: 49.7973, lon: 12.6369, url: "https://www.mutachov.cz/zachytna-stanice/" },
-  { name: "Azyl pro opuštěná zvířata Lety", lat: 49.9112, lon: 14.3177, url: "https://www.utulek-lety.cz/" },
-  { name: "Útulek Trutnov", lat: 50.5596, lon: 15.9161, url: "https://utulek-trutnov.cz/" },
-  { name: "Opuštěná zvířata v nouzi – Čáslav", lat: 49.9121, lon: 15.3913, url: "https://www.zvirevnouzi.cz/" }
+  { name: "Útulek Jimlín", lat: 50.3592, lon: 13.7418, url: "https://utulek-jimlin.cz/" },
+  { name: "Útulek Lesan Kladno", lat: 50.1359, lon: 14.1003, url: "https://utulek-kralupy.estranky.cz/" },
+  { name: "Záchytná stanice Tachov", lat: 49.7973, lon: 12.6369, url: "https://zachrannastanicezivocichutachov.estranky.cz/" },  { name: "Útulek Trutnov", lat: 50.5596, lon: 15.9161, url: "https://utulek.trutnov.cz/" },
+  { name: "Opuštěná zvířata v nouzi – Čáslav", lat: 49.9121, lon: 15.3913, url: "https://www.zvirevnouzi.cz/" },
+  { name: "Kočičí domov Sluníčko", lat: 50.4666, lon: 14.2425, url: "https://www.kocicidomovslunicko.cz/" },
+  { name: "Azyl opuštěných koček Znojmo", lat: 48.8551, lon: 16.0484, url: "http://www.kociciazylznojemsko.cz/" },
+  { name: "Kočičí naděje, z.s. – depozitum Praha", lat: 50.0802, lon: 14.4289, url: "https://kocicinadeje.cz/" },
+  { name: "DogPlanet – Chrášťany", lat: 50.0477, lon: 14.2739, url: "https://www.dogplanet.cz/" },
+  { name: "Toulavé tlapky, z.s.", lat: 50.0369, lon: 14.2546, url: "https://www.toulavetlapky.cz/" },
+  { name: "Kočičí štěstí z.s. – Olomouc", lat: 49.5938, lon: 17.2509, url: "https://www.kocicistesti.cz/" },
+  { name: "Záchranná stanice Bartošovice", lat: 49.7252, lon: 18.1041, url: "https://csopnj.cz/strediska/zachranna-stanice-bartosovice/" },
+  { name: "Útulek Tábor", lat: 49.4173, lon: 14.6761, url: "https://www.utulektabor.cz/" },
+  { name: "Tlapky na cestě – Plzeň", lat: 49.7481, lon: 13.3774, url: "https://www.tlapkynaceste.cz/" }
 ];
 
     shelters.forEach(shelter => {
@@ -85,6 +199,5 @@ const shelters = [
         .bindPopup(`<strong>${shelter.name}</strong><br><a href="${shelter.url}" target="_blank">Navštívit útulek</a>`);
     });
   </script>
-
 </body>
 </html>
