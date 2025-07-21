@@ -115,34 +115,16 @@
   </style>
 </head>
 
-  <!-- Sdílecí bublina -->
-<button onclick="shareWebsite()" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: deeppink;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-">
-  📤
-</button>
-  
 <body>
   <h1 class="main-title">NEKUPUJ, ALE ADOPTUJ!</h1>
 
-<h1>Adoptuj, ne kupuj! 🐾</h1>
+  <h1>Adoptuj, ne kupuj! 🐾</h1>
 
-<!-- Sdílecí tlačítko -->
-<button onclick="shareWebsite()" style="font-size: 1.2em; padding: 10px 20px; border-radius: 10px; background-color: hotpink; color: white; border: none; cursor: pointer;">
-  📤 Sdílet tuto stránku
-</button>
-  
+  <!-- Sdílecí tlačítko -->
+  <button onclick="shareWebsite()" style="font-size: 1.2em; padding: 10px 20px; border-radius: 10px; background-color: hotpink; color: white; border: none; cursor: pointer;">
+    📤 Sdílet tuto stránku
+  </button>
+
   <section>
     <h2>Proč adoptovat?</h2>
     <ul>
@@ -195,7 +177,11 @@
       attribution: '&copy; OpenStreetMap přispěvatelé'
     }).addTo(map);
 
-    const shelters = [/* tvoje data útulků (ponechávám beze změny) */];
+    const shelters = [
+      { name: "Kočičí Azyl Znojemsko", lat: 48.8557, lon: 16.0619, url: "https://www.kociciazylznojemsko.cz/" },
+      { name: "Azyl Lucky", lat: 49.5324, lon: 15.2058, url: "https://www.azyl-lucky.cz/" },
+      { name: "Dogplanet", lat: 49.2926, lon: 14.1457, url: "https://www.dogplanet.cz/" }
+    ];
 
     shelters.forEach(shelter => {
       L.marker([shelter.lat, shelter.lon])
@@ -203,24 +189,24 @@
         .bindPopup(`<strong>${shelter.name}</strong><br><a href="${shelter.url}" target="_blank">Navštívit útulek</a>`);
     });
 
-   <script>
-  function shareWebsite() {
-    const url = "https://code-cat123.github.io/AdoptujNeKupuj/";
-    if (navigator.share) {
-      navigator.share({
-        title: "Adoptuj, ne kupuj!",
-        text: "Mrkni na útulky a adoptuj místo kupování 🐾",
-        url: url
-      });
-    } else {
-      navigator.clipboard.writeText(url).then(() => {
-        alert("Odkaz zkopírován do schránky!");
-      });
+    function shareWebsite() {
+      const url = "https://code-cat123.github.io/AdoptujNeKupuj/";
+      if (navigator.share) {
+        navigator.share({
+          title: "Adoptuj, ne kupuj!",
+          text: "Mrkni na útulky a adoptuj místo kupování 🐾",
+          url: url
+        });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert("Odkaz zkopírován do schránky!");
+        });
+      }
     }
-  }
-</script>
+  </script>
 
   <!-- Plovoucí tlačítko -->
-  <button class="floating-share" onclick="sharePage()">📤</button>
+  <button class="floating-share" onclick="shareWebsite()">📤</button>
+
 </body>
 </html>
