@@ -26,6 +26,37 @@
       text-align: center;
     }
 
+    .main-share-button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.main-share-button:hover {
+  transform: scale(1.05);
+}
+
+.floating-share {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
     @keyframes pulz {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -82,6 +113,10 @@
 </head>
 <body>
   <h1 class="main-title">NEKUPUJ, ALE ADOPTUJ!</h1>
+
+  <div class="share-buttons">
+  <button onclick="shareWebsite()" class="main-share-button">📣 Sdílej tuto stránku</button>
+</div>
 
   <section>
     <h2>Proč adoptovat?</h2>
@@ -197,7 +232,23 @@ const shelters = [
       L.marker([shelter.lat, shelter.lon])
         .addTo(map)
         .bindPopup(`<strong>${shelter.name}</strong><br><a href="${shelter.url}" target="_blank">Navštívit útulek</a>`);
-    });
+        });
+
+    function sharePage() {
+      const url = "https://code-cat123.github.io/AdoptujNeKupuj/";
+      if (navigator.share) {
+        navigator.share({
+          title: "Adoptuj, ne kupuj!",
+          text: "Mrkni na útulky a adoptuj místo kupování 🐾",
+          url: url
+        });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert("Odkaz zkopírován do schránky!");
+        });
+      }
+    }
   </script>
+  <button class="floating-share" onclick="shareWebsite()">📤</button>
 </body>
 </html>
