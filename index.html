@@ -114,14 +114,12 @@
     }
   </style>
 </head>
-
 <body>
   <h1 class="main-title">NEKUPUJ, ALE ADOPTUJ!</h1>
 
   <h1>Adoptuj, ne kupuj! 🐾</h1>
 
-  <!-- Sdílecí tlačítko -->
-  <button onclick="shareWebsite()" style="font-size: 1.2em; padding: 10px 20px; border-radius: 10px; background-color: hotpink; color: white; border: none; cursor: pointer;">
+  <button onclick="shareWebsite()" class="main-share-button">
     📤 Sdílet tuto stránku
   </button>
 
@@ -131,7 +129,7 @@
       <li>❤️ Zachráníš život</li>
       <li>🐾 Získáš věrného parťáka</li>
       <li>💸 Adopce je levnější a smysluplná</li>
-      <li>🚫 Nepodporuješ množitele</li>
+      <li>❌ Nepodporuješ množitele</li>
     </ul>
   </section>
 
@@ -177,7 +175,7 @@
       attribution: '&copy; OpenStreetMap přispěvatelé'
     }).addTo(map);
 
-   const shelters = [
+    const shelters = [
   { name: "Anidef", lat: 50.24, lon: 13.74, url: "https://www.anidef.cz/" },
   { name: "Anidef – Útulek Žim", lat: 50.5594, lon: 13.8952, url: "https://www.anidef.cz/" },
   { name: "Azyl Gaia", lat: 49.601, lon: 17.261, url: "https://www.azylgaia.cz/" },
@@ -250,8 +248,7 @@
     }
   </script>
 
-  <!-- Plovoucí tlačítko -->
   <button class="floating-share" onclick="shareWebsite()">📤</button>
-
 </body>
 </html>
+
